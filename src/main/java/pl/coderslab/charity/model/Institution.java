@@ -1,17 +1,12 @@
 package pl.coderslab.charity.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
 @Entity
 @Table(name = "institutions")
 public class Institution {
@@ -25,5 +20,6 @@ public class Institution {
     @Column
     @Size(max = 600)
     private String description;
+
 
 }

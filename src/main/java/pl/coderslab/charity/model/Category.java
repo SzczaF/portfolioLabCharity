@@ -1,9 +1,9 @@
 package pl.coderslab.charity.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -16,7 +16,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(max = 100)
+    @Length(max = 100)
     private String name;
 
 }

@@ -1,17 +1,17 @@
 package pl.coderslab.charity.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
 @Table(name = "donations")
@@ -20,30 +20,36 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Positive //sprawdza czy większe niż 0
     private Integer quantity;
 
-    @NotNull
-    @OneToMany
-    private List<Category> categories;
+    @NotEmpty
+    @ManyToMany
+    private Set<Category> categories;
 
     @NotNull
     @ManyToOne
     private Institution institution;
 
-    @Size(max = 255)
+    @NotBlank
+    @Length(max = 255)
     private String street;
 
-    @Size(max = 100)
+    @NotBlank
+    @Length(max = 100)
     private String city;
 
-    @Size(max = 50)
+    @NotBlank
+    @Length(max = 50)
     private String zipCode;
 
-    // TODO Czemu nie LocalDateTime ? :)
+    @NotNull
     private LocalDate pickUpDate;
+    @NotNull
     private LocalTime pickUpTime;
 
-    @Size(max = 4000)
+    @Length(max = 4000)
     private String pickUpComment;
 
 
