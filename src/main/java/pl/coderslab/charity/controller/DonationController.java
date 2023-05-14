@@ -11,9 +11,7 @@ import pl.coderslab.charity.model.Institution;
 import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.InstitutionService;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
