@@ -11,7 +11,9 @@ import pl.coderslab.charity.model.Institution;
 import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.InstitutionService;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,8 +33,8 @@ public class DonationController {
     @ModelAttribute("categoryList")
     public List<Category> getCategories() {
         return categoryService.findAll();
-
     }
+
 
     @ModelAttribute("institutionList")
     public List<Institution> getInstitutions() {
