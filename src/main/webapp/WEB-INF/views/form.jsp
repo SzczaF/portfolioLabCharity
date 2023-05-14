@@ -28,17 +28,17 @@
     </div>
 
 
-<form:form action="form-confirmation.html" modelAttribute="donation" method="post">
-
-    categories<form:checkboxes path="categories" items="${categoryList}"/>
-    institution<form:select path="institution" items="${institutionList}"/>
-    zipCode<form:input path="zipCode" />
-    street<form:input path="street" />
-    city<form:input path="city"/>
-    quantity<form:input path="quantity"/>
-    pickUpComment<form:textarea path="pickUpComment"/>
-    pickUpDate<form:input type="date" path="pickUpDate"/>
-    <form:input type="time" path="pickUpTime" />
+<form:form modelAttribute="donation" method="post">
+    categories: <form:checkboxes path="categories" items="${categoryList}" itemLabel="name"/>
+    institution: <form:select path="institution" items="${institutionList}" itemLabel="name"/>
+    zipCode: <form:input path="zipCode" />
+    street: <form:input path="street" />
+    city: <form:input path="city"/>
+    quantity: <form:input path="quantity" type="number"/>
+    pickUpComment: <form:textarea path="pickUpComment"/>
+    pickUpDate: <form:input type="date" path="pickUpDate"/>
+    pickUpTime: <form:input type="time" path="pickUpTime" />
+    <button type="submit">Zatwierdź</button>
 </form:form>
 
 
