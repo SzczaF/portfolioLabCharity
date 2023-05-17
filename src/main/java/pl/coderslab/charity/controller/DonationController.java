@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.charity.model.Category;
 import pl.coderslab.charity.model.Donation;
 import pl.coderslab.charity.model.Institution;
@@ -39,7 +38,12 @@ public class DonationController {
       return "/form";
     }
     donationService.saveDonation(donation);
-    return "/form_confirmation";
+    return "redirect:/formConfirmation";
+  }
+
+  @GetMapping("/formConfirmation")
+  public String showConfirmationPage() {
+    return "form_confirmation";
   }
 
   @ModelAttribute("categoryList")
