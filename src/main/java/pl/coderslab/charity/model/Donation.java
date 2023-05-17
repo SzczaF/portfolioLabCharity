@@ -45,6 +45,10 @@ public class Donation {
     @Length(max = 50)
     private String zipCode;
 
+    @NotBlank
+    @Length(min = 9, max = 20)
+    private String phoneNumber;
+
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;

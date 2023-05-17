@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
   /**
    * Form Select
@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
   }
+
   document.querySelectorAll(".form-group--dropdown select").forEach(el => {
     new FormSelect(el);
   });
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
   /**
    * Hide elements when clicked on document
    */
-  document.addEventListener("click", function(e) {
+  document.addEventListener("click", function (e) {
     const target = e.target;
     const tagName = target.tagName;
 
@@ -164,9 +165,47 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
-    }
+      if (this.currentStep === 5) {
+        const bagsCount = this.$form.querySelector("#quantity").value;
+        const institutionName = this.$form.querySelector("[name=institution]:checked")
+            .parentElement.querySelector("div.title").innerText;
 
+        const bagTypesList = this.$form.querySelectorAll("[name=categories]:checked");
+        let bagTypes = [];
+        bagTypesList.forEach(e=>
+            bagTypes.push(e.parentElement.querySelector(".description").innerText));
+        bagTypes.join(", ");
+
+        this.$form.querySelector("span#bags-summary-text").innerText = "Liczba worków: " + bagsCount + ". Wybrane kategorie: " + bagTypes;
+        this.$form.querySelector("span#institution-summary-text").innerText = "Dla fundacji - " + institutionName;
+
+        const liStreet = this.prepLiElement("#street");
+        const liCity = this.prepLiElement("#city");
+        const liZipCode = this.prepLiElement("#zipCode");
+        const liPhoneNum = this.prepLiElement("#phoneNumber");
+
+        const liPickUpDate = this.prepLiElement("#pickUpDate");
+        const liPickUpTime = this.prepLiElement("#pickUpTime");
+        const liPickUpComm = this.prepLiElement("#pickUpComment");
+
+        const ulAddress
+            = this.$form.querySelector("#address-summary");
+        const ulPickUpDate
+            = this.$form.querySelector("#pickup-date-summary");
+
+        if (ulAddress.hasChildNodes() || ulPickUpDate.hasChildNodes()) {
+          ulAddress.replaceChildren(liCity, liZipCode, liPhoneNum, liStreet);
+          ulPickUpDate.replaceChildren(liPickUpDate, liPickUpTime, liPickUpComm);
+        }
+      }
+    }
+    prepLiElement(selector){
+      const liEl = document.createElement("li");
+      liEl.innerText = this.$form.querySelector(selector).value;
+      return liEl;
+    }
   }
+
   const form = document.querySelector(".form--steps");
   if (form !== null) {
     new FormSteps(form);

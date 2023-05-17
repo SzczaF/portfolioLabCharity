@@ -16,18 +16,18 @@ import pl.coderslab.charity.repository.InstitutionRepository;
 
 public class HomeController {
 
-    private final InstitutionRepository institutionRepository;
-    private final DonationRepository donationRepository;
+  private final InstitutionRepository institutionRepository;
+  private final DonationRepository donationRepository;
 
-    @RequestMapping("/")
-    public String homeAction(Model model) {
-        //TODO jak ograniczyć liczbe rekordów -- Pageable
+  @RequestMapping("/")
+  public String homeAction(Model model) {
+    //TODO jak ograniczyć liczbe rekordów -- Pageable
 //        Pageable limit = PageRequest.of(0, 6, Sort.by(Sort.Direction.ASC, "id")); // jeśli chce miec sortowanie to ten sposób lepszy
-        Pageable limit = Pageable.ofSize(6);
-        model.addAttribute("allInstitutionList", institutionRepository.findAll(limit).getContent());
+    Pageable limit = Pageable.ofSize(6);
+    model.addAttribute("allInstitutionList", institutionRepository.findAll(limit).getContent());
 
-        model.addAttribute("bagCount", donationRepository.getSumOfAllBags().orElse(0L));
-        model.addAttribute("donationCount", donationRepository.count());
-        return "index";
-    }
+    model.addAttribute("bagCount", donationRepository.getSumOfAllBags().orElse(0L));
+    model.addAttribute("donationCount", donationRepository.count());
+    return "index";
+  }
 }

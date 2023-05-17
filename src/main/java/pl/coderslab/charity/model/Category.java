@@ -12,11 +12,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "categories")
 public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Length(max = 100)
-    private String name;
+  @Length(max = 100)
+  private String name;
 
 }
