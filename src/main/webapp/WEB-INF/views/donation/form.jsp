@@ -207,6 +207,4 @@
 </section>
 
 
-<script src="<c:url value="resources/js/app.js"/>"></script>
-</body>
-</html>
+<%@ include file="../footer.jsp" %>

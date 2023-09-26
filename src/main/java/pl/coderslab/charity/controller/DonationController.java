@@ -29,21 +29,21 @@ public class DonationController {
   public String add(Model model) {
     model.addAttribute("donation", new Donation());
 //        model.asMap().forEach((k, v) -> logger.debug(k + ": " + v));
-    return "/form";
+    return "donation/form";
   }
 
   @PostMapping("/donationForm")
   public String addSave(@Valid Donation donation, BindingResult result) {
     if (result.hasErrors()) {
-      return "/form";
+      return "donation/form";
     }
-    donationService.saveDonation(donation);
+    donationService.save(donation);
     return "redirect:/formConfirmation";
   }
 
   @GetMapping("/formConfirmation")
   public String showConfirmationPage() {
-    return "form_confirmation";
+    return "donation/form_confirmation";
   }
 
   @ModelAttribute("categoryList")

@@ -22,7 +22,7 @@ public class HomeController {
   @RequestMapping("/")
   public String homeAction(Model model) {
     //TODO jak ograniczyć liczbe rekordów -- Pageable
-//        Pageable limit = PageRequest.of(0, 6, Sort.by(Sort.Direction.ASC, "id")); // jeśli chce miec sortowanie to ten sposób lepszy
+//        Pageable limit = PageRequest.of(0, 6, Sort.by(Sort.Direction.ASC, "id")); // jeśli chce mieć sortowanie to ten sposób lepszy
     Pageable limit = Pageable.ofSize(6);
     model.addAttribute("allInstitutionList", institutionRepository.findAll(limit).getContent());
 

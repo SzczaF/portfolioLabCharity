@@ -15,7 +15,7 @@ public class DonationService {
     public List<Donation> findAll(){
         return this.donationRepository.findAll();
     }
-    public void saveDonation(Donation donation) {
+    public void save(Donation donation) {
         donationRepository.save(donation);
     }
 
